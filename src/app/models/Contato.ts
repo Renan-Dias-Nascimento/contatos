@@ -1,5 +1,5 @@
 export interface Contato{
     nome: string;
     email?: string;
-    tels?: string[];
+    tels: string[];
 }

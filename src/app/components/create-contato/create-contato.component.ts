@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Contato } from 'src/app/models/Contato';
 
 @Component({
   selector: 'app-create-contato',
@@ -9,13 +10,22 @@ export class CreateContatoComponent implements OnInit {
 
 @Output() onCancelClick:EventEmitter<null> = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  novoContato:Contato = {
+  nome:"",
+  email:"",
+  tels:[""]
   }
 
-fecharModalClick() {
-  this.onCancelClick.emit()
-}
-
+  constructor(){ }
+  
+  ngOnInit(): void{
+  }
+  
+  fecharModalClick(){
+    this.onCancelClick.emit()
+  }
+  
+  track(index:number, value:string){
+    return index;
+  }
 }
