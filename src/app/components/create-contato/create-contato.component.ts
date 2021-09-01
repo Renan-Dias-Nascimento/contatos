@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Contato } from 'src/app/models/Contato';
+import { ContatoService } from 'src/app/services/contato.service';
 
 @Component({
   selector: 'app-create-contato',
@@ -16,6 +17,8 @@ export class CreateContatoComponent implements OnInit {
   tels:[""]
   }
 
+  contatoService:ContatoService = new ContatoService();
+
   constructor(){ }
   
   ngOnInit(): void{
@@ -28,4 +31,18 @@ export class CreateContatoComponent implements OnInit {
   track(index:number, value:string){
     return index;
   }
+  
+  addTelefone(): void{
+    this.novoContato.tels.push("")
+  }
+
+  salvar() {
+    this.contatoService.addContato(this.novoContato);
+    this.onCancelClick.emit();
+  }
+
+  removeTelefone(i:number): void{
+    this.novoContato.tels.splice(i,1)
+  }
+
 }

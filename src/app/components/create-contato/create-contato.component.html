@@ -6,14 +6,18 @@
         </label>
         <label>
             E-mail:
-            <input type="email" name="email">
+            <input type="email" name="email" [(ngModel)]="novoContato.email">
         </label>
         <label>
             Telefone:
             <div *ngFor="let tel of novoContato.tels; let i = index; trackBy:track">
                 <input type="tel" name="tel_{{i}}" [(ngModel)]="novoContato.tels[i]">
-                <a *ngIf="i==0"><i class="material-icons">add_circle</i></a>
-                <a *ngIf="i!=0" class="remove"><i class="material-icons">remove_circle</i></a>
+                <a *ngIf="i==0" (click)="addTelefone()">
+                    <i class="material-icons">add_circle</i>
+                </a>
+                <a *ngIf="i!=0" (click)="removeTelefone(i)" class="remove">
+                    <i class="material-icons">remove_circle</i>
+                </a>
             </div>
             <!-- <div>
                 <input type="email" name="email" id="email">
@@ -23,11 +27,10 @@
                 <input type="email" name="email" id="email">
                 <a class="remove"><i class="material-icons">remove_circle</i></a> 
             </div>-->
-            <pre>{{novoContato|json}}</pre>
         </label>
         <div class="controles">
             <button (click)="fecharModalClick()" type="button" class="link">Cancelar</button>
-            <button type="button">Adicionar</button>
+            <button (click)="salvar()" type="submit">Adicionar</button>
         </div>
     </form>
 </div>
